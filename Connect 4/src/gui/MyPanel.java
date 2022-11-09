@@ -4,22 +4,24 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
+
+import connect4.IConnect4;
 
 public class MyPanel extends JPanel {
 
 	private Image background;
 	private List<Chip> chips;
 
-	public MyPanel() {
+	public MyPanel(IConnect4 connect4) {
 		background = new ImageIcon("Assets/Board.png").getImage();
-		chips = new ArrayList<>();
+		chips = new LinkedList<>();
 		this.setPreferredSize(new Dimension(background.getWidth(null), background.getHeight(null)));
-		this.addMouseListener(new ClickListener(this));
+		this.addMouseListener(new ClickListener(this, connect4));
 	}
 
 	@Override
@@ -28,8 +30,6 @@ public class MyPanel extends JPanel {
 		g2d.drawImage(background, 0, 0, null);
 		for (Chip chip : chips)
 			g2d.drawImage(chip.getColor(), 76 + 92 * chip.getX(), 35 + 92 * chip.getY(), 75, 75, null);
-		// g2d.drawImage(redChip, 76, 35, 75, 75, null);
-		// g2d.drawImage(yellowChip, 13 + 90 * 2, 5 + 80 * 3, 75, 75, null);
 	}
 
 	public void addChip(Chip chip) {
