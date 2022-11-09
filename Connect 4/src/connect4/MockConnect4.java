@@ -19,9 +19,6 @@ public class MockConnect4 implements IConnect4 {
 
 	@Override
 	public Chip put(int column) {
-		if (column < 0)
-			return null;
-
 		int row = y[column]--;
 		if (row < 0)
 			return null;

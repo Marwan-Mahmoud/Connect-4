@@ -3,24 +3,19 @@ package gui;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-import connect4.IConnect4;
-
 public class ClickListener implements MouseListener {
 
 	private MyPanel panel;
-	private IConnect4 connect4;
 
-	public ClickListener(MyPanel panel, IConnect4 connect4) {
+	public ClickListener(MyPanel panel) {
 		this.panel = panel;
-		this.connect4 = connect4;
 	}
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		int coloumn = getColumn(e.getX());
-		Chip chip = connect4.put(coloumn);
-		if (chip != null)
-			panel.addChip(chip);
+		int column = getColumn(e.getX());
+		if (column >= 0)
+			panel.putChip(column);
 	}
 
 	private int getColumn(int x) {
