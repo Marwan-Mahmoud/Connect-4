@@ -19,7 +19,8 @@ public class ClickListener implements MouseListener {
 	public void mouseClicked(MouseEvent e) {
 		int coloumn = getColumn(e.getX());
 		Chip chip = connect4.put(coloumn);
-		panel.addChip(chip);
+		if (chip != null)
+			panel.addChip(chip);
 	}
 
 	private int getColumn(int x) {
