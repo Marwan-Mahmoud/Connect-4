@@ -2,3 +2,10 @@
 Connect 4/.classpath
 Connect 4/.project
 Connect 4/.settings/org.eclipse.jdt.core.prefs
+Connect 4/bin
+Connect 4/bin/
+Connect 4/out/
+Connect 4/.idea/
+Connect 4/Connect 4.iml
+*.xml
+
