@@ -31,7 +31,7 @@ public class Connect4 {
 	public enum Turn {
 		Red, Yellow;
 	}
-	
+
 	public Connect4 putChip(int column) {
 		int row = indexOfNextChip[column]--;
 		if (row < 0)
@@ -81,7 +81,7 @@ public class Connect4 {
 	public int[] getColumns() {
 		return indexOfNextChip;
 	}
-	
+
 	public void setController(Controller controller) {
 		this.controller = controller;
 	}
@@ -99,26 +99,4 @@ public class Connect4 {
 		connect4.indexOfNextChip = indexOfNextChip.clone();
 		return connect4;
 	}
-
-	@Override
-	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		for (int i = 0; i < rows; i++) {
-			for (int j = 0; j < columns; j++) {
-				if (board[i][j] == 0)
-					builder.append("_ ");
-				else
-					builder.append(board[i][j] + " ");
-			}
-			builder.append("\n");
-		}
-		return builder.toString();
-	}
-
-	/*public static void main(String[] args) {
-		Connect4 connect4 = new Connect4();
-		for (Connect4 c : connect4.getNeighbors().get(0).getNeighbors()) {
-			System.out.println(c);
-		}
-	}*/
 }
