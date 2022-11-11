@@ -19,6 +19,10 @@ public class Connect4 {
 
 	public Connect4() {
 		board = new char[rows][columns];
+		for(int i = 0; i < rows; i++)
+			for(int j = 0; j < columns; j++)
+				board[i][j] = '.';
+
 		turn = Turn.Red;
 		userScore = 0;
 		agentScore = 0;

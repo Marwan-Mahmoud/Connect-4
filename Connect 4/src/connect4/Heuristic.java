@@ -1,11 +1,11 @@
 package connect4;
 
 public class Heuristic {
-    final private int LENGTH = 6;
-    final private int WIDTH  = 7;
-    final private char AI = 'R';
-    final private char Player = 'Y';
-    final private char Empty = '-';
+    final private int rows = 6;
+    final private int columns = 7;
+    final private char AI = 'Y';
+    final private char Player = 'R';
+    final private char Empty = '.';
 
     public int calcHeuristic(char[][] board){
         int score = 0;
@@ -21,31 +21,28 @@ public class Heuristic {
     private int connect4(char[][] board,char piece){
         int score = 0;
 
-
         // horizontal
-        for (int i = 0; i < LENGTH; i++)
-            for (int j = 0; j < WIDTH - 3; j++)
+        for (int i = 0; i < rows; i++)
+            for (int j = 0; j < columns - 3; j++)
                 if (board[i][j] == piece && board[i][j + 1] == piece && board[i][j + 2] == piece && board[i][j + 3] == piece)
                     score++;
 
         // vertical
-        for (int i = 0; i < LENGTH - 3; i++)
-            for (int j = 0; j < WIDTH; j++)
+        for (int i = 0; i < rows - 3; i++)
+            for (int j = 0; j < columns; j++)
                 if (board[i][j] == piece && board[i + 1][j] == piece && board[i + 2][j] == piece && board[i + 3][j] == piece)
                     score++;
 
         // negative diagonal
-        for (int i = 3; i < LENGTH; i++)
-            for (int j = 0; j < WIDTH - 3; j++)
-                if (board[i][j] == piece && board[i - 1][j + 1] == piece &&
-                        board[i - 2][j + 2] == piece && board[i - 3][j + 3] == piece)
+        for (int i = 3; i < rows; i++)
+            for (int j = 0; j < columns - 3; j++)
+                if (board[i][j] == piece && board[i - 1][j + 1] == piece && board[i - 2][j + 2] == piece && board[i - 3][j + 3] == piece)
                     score++;
 
         // positive diagonal
-        for (int i = 0; i < LENGTH - 3; i++)
-            for (int j = 0; j < WIDTH - 3; j++)
-                if (board[i][j] == piece && board[i + 1][j + 1] == piece &&
-                        board[i + 2][j + 2] == piece && board[i + 3][j + 3] == piece)
+        for (int i = 0; i < rows - 3; i++)
+            for (int j = 0; j < columns - 3; j++)
+                if (board[i][j] == piece && board[i + 1][j + 1] == piece && board[i + 2][j + 2] == piece && board[i + 3][j + 3] == piece)
                     score++;
 
         return score;
@@ -54,10 +51,9 @@ public class Heuristic {
     private int connect3(char[][] board,char piece) {
         int score = 0;
 
-
         // horizontal
-        for (int i = 0; i < LENGTH; i++) {
-            for (int j = 0; j < WIDTH - 3; j++){
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < columns - 3; j++){
                 if (board[i][j] == Empty && board[i][j + 1] == piece && board[i][j + 2] == piece && board[i][j + 3] == piece)
                     score++;
                 if (board[i][j] == piece && board[i][j + 1] == Empty && board[i][j + 2] == piece && board[i][j + 3] == piece)
@@ -70,8 +66,8 @@ public class Heuristic {
         }
 
         // vertical
-        for (int i = 0; i < LENGTH - 3; i++) {
-            for (int j = 0; j < WIDTH; j++) {
+        for (int i = 0; i < rows - 3; i++) {
+            for (int j = 0; j < columns; j++) {
                 if (board[i][j] == Empty && board[i + 1][j] == piece && board[i + 2][j] == piece && board[i + 3][j] == piece)
                     score++;
                 if (board[i][j] == piece && board[i + 1][j] == Empty && board[i + 2][j] == piece && board[i + 3][j] == piece)
@@ -84,37 +80,29 @@ public class Heuristic {
         }
 
         // negative diagonal
-        for (int i = 3; i < LENGTH; i++) {
-            for (int j = 0; j < WIDTH - 3; j++) {
-                if (board[i][j] == Empty && board[i - 1][j + 1] == piece &&
-                        board[i - 2][j + 2] == piece && board[i - 3][j + 3] == piece)
+        for (int i = 3; i < rows; i++) {
+            for (int j = 0; j < columns - 3; j++) {
+                if (board[i][j] == Empty && board[i - 1][j + 1] == piece && board[i - 2][j + 2] == piece && board[i - 3][j + 3] == piece)
                     score++;
-                if (board[i][j] == piece && board[i - 1][j + 1] == Empty &&
-                        board[i - 2][j + 2] == piece && board[i - 3][j + 3] == piece)
+                if (board[i][j] == piece && board[i - 1][j + 1] == Empty && board[i - 2][j + 2] == piece && board[i - 3][j + 3] == piece)
                     score++;
-                if (board[i][j] == piece && board[i - 1][j + 1] == piece &&
-                        board[i - 2][j + 2] == Empty && board[i - 3][j + 3] == piece)
+                if (board[i][j] == piece && board[i - 1][j + 1] == piece && board[i - 2][j + 2] == Empty && board[i - 3][j + 3] == piece)
                     score++;
-                if (board[i][j] == piece && board[i - 1][j + 1] == piece &&
-                        board[i - 2][j + 2] == piece && board[i - 3][j + 3] == Empty)
+                if (board[i][j] == piece && board[i - 1][j + 1] == piece && board[i - 2][j + 2] == piece && board[i - 3][j + 3] == Empty)
                     score++;
             }
         }
 
         // positive diagonal
-        for (int i = 0; i < LENGTH - 3; i++) {
-            for (int j = 0; j < WIDTH - 3; j++) {
-                if (board[i][j] == Empty && board[i + 1][j + 1] == piece &&
-                        board[i + 2][j + 2] == piece && board[i + 3][j + 3] == piece)
+        for (int i = 0; i < rows - 3; i++) {
+            for (int j = 0; j < columns - 3; j++) {
+                if (board[i][j] == Empty && board[i + 1][j + 1] == piece && board[i + 2][j + 2] == piece && board[i + 3][j + 3] == piece)
                     score++;
-                if (board[i][j] == piece && board[i + 1][j + 1] == Empty &&
-                        board[i + 2][j + 2] == piece && board[i + 3][j + 3] == piece)
+                if (board[i][j] == piece && board[i + 1][j + 1] == Empty && board[i + 2][j + 2] == piece && board[i + 3][j + 3] == piece)
                     score++;
-                if (board[i][j] == piece && board[i + 1][j + 1] == piece &&
-                        board[i + 2][j + 2] == Empty && board[i + 3][j + 3] == piece)
+                if (board[i][j] == piece && board[i + 1][j + 1] == piece && board[i + 2][j + 2] == Empty && board[i + 3][j + 3] == piece)
                     score++;
-                if (board[i][j] == piece && board[i + 1][j + 1] == piece &&
-                        board[i + 2][j + 2] == piece && board[i + 3][j + 3] == Empty)
+                if (board[i][j] == piece && board[i + 1][j + 1] == piece && board[i + 2][j + 2] == piece && board[i + 3][j + 3] == Empty)
                     score++;
             }
         }
@@ -124,10 +112,9 @@ public class Heuristic {
     private int connect2(char[][] board,char piece) {
         int score = 0;
 
-
         // horizontal
-        for (int i = 0; i < LENGTH; i++) {
-            for (int j = 0; j < WIDTH - 3; j++){
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < columns - 3; j++){
                 if (board[i][j] == Empty && board[i][j + 1] == Empty && board[i][j + 2] == piece && board[i][j + 3] == piece)
                     score++;
                 if (board[i][j] == piece && board[i][j + 1] == Empty && board[i][j + 2] == piece && board[i][j + 3] == Empty)
@@ -144,8 +131,8 @@ public class Heuristic {
         }
 
         // vertical
-        for (int i = 0; i < LENGTH - 3; i++) {
-            for (int j = 0; j < WIDTH; j++) {
+        for (int i = 0; i < rows - 3; i++) {
+            for (int j = 0; j < columns; j++) {
                 if (board[i][j] == Empty && board[i + 1][j] == Empty && board[i + 2][j] == piece && board[i + 3][j] == piece)
                     score++;
                 if (board[i][j] == piece && board[i + 1][j] == Empty && board[i + 2][j] == piece && board[i + 3][j] == Empty)
@@ -162,54 +149,41 @@ public class Heuristic {
         }
 
         // negative diagonal
-        for (int i = 3; i < LENGTH; i++) {
-            for (int j = 0; j < WIDTH - 3; j++) {
-                if (board[i][j] == Empty && board[i - 1][j + 1] == Empty &&
-                        board[i - 2][j + 2] == piece && board[i - 3][j + 3] == piece)
+        for (int i = 3; i < rows; i++) {
+            for (int j = 0; j < columns - 3; j++) {
+                if (board[i][j] == Empty && board[i - 1][j + 1] == Empty && board[i - 2][j + 2] == piece && board[i - 3][j + 3] == piece)
                     score++;
-                if (board[i][j] == piece && board[i - 1][j + 1] == Empty &&
-                        board[i - 2][j + 2] == piece && board[i - 3][j + 3] == Empty)
+                if (board[i][j] == piece && board[i - 1][j + 1] == Empty && board[i - 2][j + 2] == piece && board[i - 3][j + 3] == Empty)
                     score++;
-                if (board[i][j] == piece && board[i - 1][j + 1] == piece &&
-                        board[i - 2][j + 2] == Empty && board[i - 3][j + 3] == Empty)
+                if (board[i][j] == piece && board[i - 1][j + 1] == piece && board[i - 2][j + 2] == Empty && board[i - 3][j + 3] == Empty)
                     score++;
-                if (board[i][j] == Empty && board[i - 1][j + 1] == piece &&
-                        board[i - 2][j + 2] == piece && board[i - 3][j + 3] == Empty)
+                if (board[i][j] == Empty && board[i - 1][j + 1] == piece && board[i - 2][j + 2] == piece && board[i - 3][j + 3] == Empty)
                     score++;
-                if (board[i][j] == Empty && board[i - 1][j + 1] == piece &&
-                        board[i - 2][j + 2] == Empty && board[i - 3][j + 3] == piece)
+                if (board[i][j] == Empty && board[i - 1][j + 1] == piece && board[i - 2][j + 2] == Empty && board[i - 3][j + 3] == piece)
                     score++;
-                if (board[i][j] == piece && board[i - 1][j + 1] == Empty &&
-                        board[i - 2][j + 2] == Empty && board[i - 3][j + 3] == piece)
+                if (board[i][j] == piece && board[i - 1][j + 1] == Empty && board[i - 2][j + 2] == Empty && board[i - 3][j + 3] == piece)
                     score++;
             }
         }
 
         // positive diagonal
-        for (int i = 0; i < LENGTH - 3; i++) {
-            for (int j = 0; j < WIDTH - 3; j++) {
-                if (board[i][j] == Empty && board[i + 1][j + 1] == Empty &&
-                        board[i + 2][j + 2] == piece && board[i + 3][j + 3] == piece)
+        for (int i = 0; i < rows - 3; i++) {
+            for (int j = 0; j < columns - 3; j++) {
+                if (board[i][j] == Empty && board[i + 1][j + 1] == Empty && board[i + 2][j + 2] == piece && board[i + 3][j + 3] == piece)
                     score++;
-                if (board[i][j] == piece && board[i + 1][j + 1] == Empty &&
-                        board[i + 2][j + 2] == piece && board[i + 3][j + 3] == Empty)
+                if (board[i][j] == piece && board[i + 1][j + 1] == Empty && board[i + 2][j + 2] == piece && board[i + 3][j + 3] == Empty)
                     score++;
-                if (board[i][j] == piece && board[i + 1][j + 1] == piece &&
-                        board[i + 2][j + 2] == Empty && board[i + 3][j + 3] == Empty)
+                if (board[i][j] == piece && board[i + 1][j + 1] == piece && board[i + 2][j + 2] == Empty && board[i + 3][j + 3] == Empty)
                     score++;
-                if (board[i][j] == Empty && board[i + 1][j + 1] == piece &&
-                        board[i + 2][j + 2] == piece && board[i + 3][j + 3] == Empty)
+                if (board[i][j] == Empty && board[i + 1][j + 1] == piece && board[i + 2][j + 2] == piece && board[i + 3][j + 3] == Empty)
                     score++;
-                if (board[i][j] == Empty && board[i + 1][j + 1] == piece &&
-                        board[i + 2][j + 2] == Empty && board[i + 3][j + 3] == piece)
+                if (board[i][j] == Empty && board[i + 1][j + 1] == piece && board[i + 2][j + 2] == Empty && board[i + 3][j + 3] == piece)
                     score++;
-                if (board[i][j] == piece && board[i + 1][j + 1] == Empty &&
-                        board[i + 2][j + 2] == Empty && board[i + 3][j + 3] == piece)
+                if (board[i][j] == piece && board[i + 1][j + 1] == Empty && board[i + 2][j + 2] == Empty && board[i + 3][j + 3] == piece)
                     score++;
             }
         }
         return score;
     }
-
 
 }

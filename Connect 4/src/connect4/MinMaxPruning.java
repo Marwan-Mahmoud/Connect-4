@@ -1,9 +1,11 @@
 package connect4;
 
 public class MinMaxPruning {
+    Heuristic h = new Heuristic();
+
     private Pair maximize(Connect4 s, int deep, int alpha, int beta) {
-//        if(deep == 0)
-//            return new Pair(null, calcHeuristic(s));
+        if(deep == 0)
+            return new Pair(null, h.calcHeuristic(s.getBoard()));
 
         int maxUtility = Integer.MIN_VALUE;
         Connect4 maxChild = null;
@@ -22,8 +24,8 @@ public class MinMaxPruning {
     }
 
     private Pair minimize(Connect4 s, int deep, int alpha, int beta) {
-//        if(deep == 0)
-//            return new Pair(null, calcHeuristic(s));
+        if(deep == 0)
+            return new Pair(null, h.calcHeuristic(s.getBoard()));
 
         int minUtility = Integer.MAX_VALUE;
         Connect4 minChild = null;
