@@ -1,17 +1,13 @@
 package gui;
 
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-
-import connect4.IConnect4;
-import connect4.MockConnect4;
 
 public class MyFrame {
 
 	private JFrame frame;
-	private JPanel panel;
+	private MyPanel panel;
 
-	public MyFrame(IConnect4 connect4) {
+	public MyFrame(Controller connect4) {
 		frame = new JFrame("Connect 4");
 		panel = new MyPanel(connect4);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -22,7 +18,7 @@ public class MyFrame {
 		frame.setVisible(true);
 	}
 
-	public static void main(String[] args) {
-		new MyFrame(new MockConnect4());
+	public MyPanel getPanel() {
+		return panel;
 	}
 }
