@@ -4,6 +4,13 @@ public class MinMaxPruning implements IMinMax {
 	Heuristic h = new Heuristic();
 
 	private Pair maximize(Connect4 s, int deep, int alpha, int beta) {
+		// full board state
+		if(!s.haveSlots()) {
+			//System.out.println("AAAAA");
+			return new Pair(null, h.connect4(s.getBoard(), 'Y'));
+		}
+
+		// leaf state
 		if (deep == 0)
 			return new Pair(null, h.calcHeuristic(s.getBoard()));
 
@@ -12,7 +19,7 @@ public class MinMaxPruning implements IMinMax {
 		for (Connect4 child : s.getNeighbors()) {
 			Pair p = minimize(child, deep - 1, alpha, beta);
 			if (p.getUtility() > maxUtility) {
-				maxChild = p.getChild();
+				maxChild = child;
 				maxUtility = p.getUtility();
 			}
 			if (maxUtility >= beta)
@@ -24,6 +31,12 @@ public class MinMaxPruning implements IMinMax {
 	}
 
 	private Pair minimize(Connect4 s, int deep, int alpha, int beta) {
+		// full board state
+		if(!s.haveSlots()) {
+			//System.out.println("AAAAA");
+			return new Pair(null, h.connect4(s.getBoard(), 'Y'));
+		}
+		// leaf state
 		if (deep == 0)
 			return new Pair(null, h.calcHeuristic(s.getBoard()));
 
@@ -32,7 +45,7 @@ public class MinMaxPruning implements IMinMax {
 		for (Connect4 child : s.getNeighbors()) {
 			Pair p = minimize(child, deep - 1, alpha, beta);
 			if (p.getUtility() < minUtility) {
-				minChild = p.getChild();
+				minChild = child;
 				minUtility = p.getUtility();
 			}
 			if (minUtility <= alpha)
