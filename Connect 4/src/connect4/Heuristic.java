@@ -9,12 +9,12 @@ public class Heuristic {
 
     public int calcHeuristic(char[][] board){
         int score = 0;
-        score += connect4(board,AI) * 10;
-        score -= connect4(board,Player) * 10;
-        score += connect3(board,AI) * 5;
-        score -= connect3(board,Player) * 5;
-        score += connect2(board,AI) * 3;
-        score -= connect2(board,Player) * 3;
+        score += connect4(board,AI) * 100;
+        score -= connect4(board,Player) * 100;
+        score += connect3(board,AI) * 20;
+        score -= connect3(board,Player) * 20;
+        score += connect2(board,AI) * 5;
+        score -= connect2(board,Player) * 5;
         return score;
     }
 

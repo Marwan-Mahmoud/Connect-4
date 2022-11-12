@@ -1,6 +1,6 @@
 package connect4;
 
-public class MinMaxPruning {
+public class MinMaxPruning implements Algorithm {
     Heuristic h = new Heuristic();
 
     private Pair maximize(Connect4 s, int deep, int alpha, int beta) {
@@ -43,7 +43,8 @@ public class MinMaxPruning {
         return new Pair(minChild, minUtility);
     }
 
-    public Connect4 aiDecision(Connect4 s){
+    @Override
+    public  Connect4 aiDecision(Connect4 s){
         Connect4 maxChild = maximize(s, 3, Integer.MIN_VALUE, Integer.MAX_VALUE).getChild();
         return maxChild;
     }

@@ -1,6 +1,6 @@
 package connect4;
 
-public class MinMax {
+public class MinMax implements Algorithm {
     Heuristic h = new Heuristic();
     private Pair maximize(Connect4 s, int deep) {
         if(deep == 0)
@@ -33,7 +33,7 @@ public class MinMax {
         }
         return new Pair(minChild, minUtility);
     }
-
+    @Override
     public Connect4 aiDecision(Connect4 s){
         Connect4 maxChild = maximize(s, 1).getChild();
         return maxChild;
