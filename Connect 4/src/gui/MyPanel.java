@@ -1,5 +1,6 @@
 package gui;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -33,7 +34,9 @@ public class MyPanel extends JPanel {
 				g.drawImage(chips[i][j], 76 + 92 * j, 35 + 92 * i, 75, 75, null);
 		}
 		g.setFont(new Font("Tahoma", Font.BOLD, 16));
+		g.setColor(Color.RED);
 		g.drawString("User score = " + controller.getUserScore(), 175, 615);
+		g.setColor(new Color(207, 182, 37));
 		g.drawString("Agent score = " + controller.getAgentScore(), 500, 615);
 	}
 
