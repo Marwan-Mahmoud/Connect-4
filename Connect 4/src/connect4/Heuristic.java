@@ -18,7 +18,7 @@ public class Heuristic {
         return score;
     }
 
-    private int connect4(char[][] board,char piece){
+    public int connect4(char[][] board,char piece){
         int score = 0;
 
         // horizontal

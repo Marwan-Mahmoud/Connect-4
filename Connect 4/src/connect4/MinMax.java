@@ -1,18 +1,23 @@
 package connect4;
 
-public class MinMax implements IMinMax {
+public class MinMax extends IMinMax {
 	Heuristic h = new Heuristic();
 
 	private Pair maximize(Connect4 s, int deep) {
+		// full board state
+		if(s.isTerminal())
+			return new Pair(null, h.connect4(s.getBoard(), 'Y'));
+		// leaf state
 		if (deep == 0)
-			return new Pair(s, h.calcHeuristic(s.getBoard()));
+			return new Pair(null, h.calcHeuristic(s.getBoard()));
+
 
 		int maxUtility = Integer.MIN_VALUE;
 		Connect4 maxChild = null;
 		for (Connect4 child : s.getNeighbors()) {
 			Pair p = minimize(child, deep - 1);
 			if (p.getUtility() > maxUtility) {
-				maxChild = p.getChild();
+				maxChild = child;
 				maxUtility = p.getUtility();
 			}
 		}
@@ -20,15 +25,19 @@ public class MinMax implements IMinMax {
 	}
 
 	private Pair minimize(Connect4 s, int deep) {
+		// full board state
+		if(s.isTerminal())
+			return new Pair(null, h.connect4(s.getBoard(), 'Y'));
+		// leaf state
 		if (deep == 0)
-			return new Pair(s, h.calcHeuristic(s.getBoard()));
+			return new Pair(null, h.calcHeuristic(s.getBoard()));
 
 		int minUtility = Integer.MAX_VALUE;
 		Connect4 minChild = null;
 		for (Connect4 child : s.getNeighbors()) {
-			Pair p = minimize(child, deep - 1);
+			Pair p = maximize(child, deep - 1);
 			if (p.getUtility() < minUtility) {
-				minChild = p.getChild();
+				minChild = child;
 				minUtility = p.getUtility();
 			}
 		}
@@ -37,7 +46,9 @@ public class MinMax implements IMinMax {
 
 	@Override
 	public Connect4 aiDecision(Connect4 s) {
-		Connect4 maxChild = maximize(s, 1).getChild();
+		Connect4 maxChild = maximize(s, depth).getChild();
+		maxChild.setAgentScore(h.connect4(maxChild.getBoard(), 'R'));
+		maxChild.setUserScore(h.connect4(maxChild.getBoard(), 'Y'));
 		return maxChild;
 	}
 }
