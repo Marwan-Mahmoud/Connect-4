@@ -74,6 +74,9 @@ public class InitialWindow implements ActionListener {
 				controller.pruning();
 			else
 				controller.noPruning();
+			try {
+				controller.setDepth(Integer.parseInt(depth.getText()));
+			} catch (Exception exception) {}
 			frame.dispose();
 		}
 	}

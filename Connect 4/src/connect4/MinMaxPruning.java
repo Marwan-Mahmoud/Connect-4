@@ -5,7 +5,7 @@ public class MinMaxPruning extends IMinMax {
 
 	private Pair maximize(Connect4 s, int deep, int alpha, int beta) {
 		// full board state
-		if(s.isTerminal())
+		if (s.isTerminal())
 			return new Pair(null, h.connect4(s.getBoard(), 'Y'));
 		// leaf state
 		if (deep == 0)
@@ -29,7 +29,7 @@ public class MinMaxPruning extends IMinMax {
 
 	private Pair minimize(Connect4 s, int deep, int alpha, int beta) {
 		// full board state
-		if(s.isTerminal())
+		if (s.isTerminal())
 			return new Pair(null, h.connect4(s.getBoard(), 'Y'));
 
 		// leaf state

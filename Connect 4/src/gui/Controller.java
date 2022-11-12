@@ -59,4 +59,8 @@ public class Controller {
 	public void pruning() {
 		minMax = new MinMaxPruning();
 	}
+
+	public void setDepth(int depth) {
+		minMax.setDepth(depth);
+	}
 }

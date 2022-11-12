@@ -5,12 +5,11 @@ public class MinMax extends IMinMax {
 
 	private Pair maximize(Connect4 s, int deep) {
 		// full board state
-		if(s.isTerminal())
+		if (s.isTerminal())
 			return new Pair(null, h.connect4(s.getBoard(), 'Y'));
 		// leaf state
 		if (deep == 0)
 			return new Pair(null, h.calcHeuristic(s.getBoard()));
-
 
 		int maxUtility = Integer.MIN_VALUE;
 		Connect4 maxChild = null;
@@ -26,7 +25,7 @@ public class MinMax extends IMinMax {
 
 	private Pair minimize(Connect4 s, int deep) {
 		// full board state
-		if(s.isTerminal())
+		if (s.isTerminal())
 			return new Pair(null, h.connect4(s.getBoard(), 'Y'));
 		// leaf state
 		if (deep == 0)
