@@ -19,8 +19,8 @@ public class Connect4 {
 
 	public Connect4() {
 		board = new char[rows][columns];
-		for(int i = 0; i < rows; i++)
-			for(int j = 0; j < columns; j++)
+		for (int i = 0; i < rows; i++)
+			for (int j = 0; j < columns; j++)
 				board[i][j] = '.';
 
 		turn = Turn.Red;
@@ -89,12 +89,12 @@ public class Connect4 {
 	public void setController(Controller controller) {
 		this.controller = controller;
 	}
-	
+
 	public void setState(Connect4 connect4) {
 		board = connect4.board;
 		turn = connect4.turn;
 		indexOfNextChip = connect4.indexOfNextChip;
-		
+
 		if (controller != null)
 			controller.setChips();
 	}
