@@ -7,6 +7,8 @@ import javax.swing.ImageIcon;
 import connect4.Connect4;
 import connect4.Connect4.Turn;
 import connect4.IMinMax;
+import connect4.MinMax;
+import connect4.MinMaxPruning;
 
 public class Controller {
 
@@ -16,6 +18,10 @@ public class Controller {
 	private Connect4 connect4;
 	private MyPanel panel;
 	private IMinMax minMax;
+
+	public Controller() {
+		minMax = new MinMax();
+	}
 
 	public void putChip(int column) {
 		if (connect4.getTurn() == Turn.Red)
@@ -46,7 +52,11 @@ public class Controller {
 		this.panel = panel;
 	}
 
-	public void setMinMax(IMinMax minMax) {
-		this.minMax = minMax;
+	public void noPruning() {
+		minMax = new MinMax();
+	}
+
+	public void pruning() {
+		minMax = new MinMaxPruning();
 	}
 }

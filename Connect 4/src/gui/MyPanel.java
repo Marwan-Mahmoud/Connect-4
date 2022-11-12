@@ -30,7 +30,6 @@ public class MyPanel extends JPanel {
 		for (int i = 0; i < rows; i++) {
 			for (int j = 0; j < columns; j++)
 				g.drawImage(chips[i][j], 76 + 92 * j, 35 + 92 * i, 75, 75, null);
-
 		}
 	}
 
@@ -41,5 +40,6 @@ public class MyPanel extends JPanel {
 	public void setChips(Image[][] chips) {
 		this.chips = chips;
 		this.repaint();
+		this.getFocusCycleRootAncestor().repaint();
 	}
 }
