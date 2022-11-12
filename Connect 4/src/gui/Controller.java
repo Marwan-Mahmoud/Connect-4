@@ -5,6 +5,8 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 
 import connect4.Connect4;
+import connect4.Connect4.Turn;
+import connect4.MinMax;
 
 public class Controller {
 
@@ -13,9 +15,11 @@ public class Controller {
 
 	private Connect4 connect4;
 	private MyPanel panel;
+	private MinMax minMax;
 
 	public void putChip(int column) {
-		connect4.putChip(column);
+		if (connect4.getTurn() == Turn.Red)
+			connect4.putChip(column);
 	}
 
 	public void setChips() {
@@ -30,6 +34,8 @@ public class Controller {
 			}
 		}
 		panel.setChips(chips);
+		if (connect4.getTurn() == Turn.Yellow)
+			connect4.setState(minMax.aiDecision(connect4));
 	}
 
 	public void setConnect4(Connect4 connect4) {
@@ -38,5 +44,9 @@ public class Controller {
 
 	public void setPanel(MyPanel panel) {
 		this.panel = panel;
+	}
+	
+	public void setMinMax(MinMax minMax) {
+		this.minMax = minMax;
 	}
 }

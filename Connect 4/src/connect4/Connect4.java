@@ -89,6 +89,15 @@ public class Connect4 {
 	public void setController(Controller controller) {
 		this.controller = controller;
 	}
+	
+	public void setState(Connect4 connect4) {
+		board = connect4.board;
+		turn = connect4.turn;
+		indexOfNextChip = connect4.indexOfNextChip;
+		
+		if (controller != null)
+			controller.setChips();
+	}
 
 	@Override
 	protected Connect4 clone() {

@@ -4,7 +4,7 @@ public class MinMax {
     Heuristic h = new Heuristic();
     private Pair maximize(Connect4 s, int deep) {
         if(deep == 0)
-            return new Pair(null, h.calcHeuristic(s.getBoard()));
+            return new Pair(s, h.calcHeuristic(s.getBoard()));
 
         int maxUtility = Integer.MIN_VALUE;
         Connect4 maxChild = null;
@@ -20,7 +20,7 @@ public class MinMax {
 
     private Pair minimize(Connect4 s, int deep) {
         if(deep == 0)
-            return new Pair(null, h.calcHeuristic(s.getBoard()));
+            return new Pair(s, h.calcHeuristic(s.getBoard()));
 
         int minUtility = Integer.MAX_VALUE;
         Connect4 minChild = null;
@@ -35,8 +35,7 @@ public class MinMax {
     }
 
     public Connect4 aiDecision(Connect4 s){
-        Connect4 maxChild = maximize(s, 3).getChild();
+        Connect4 maxChild = maximize(s, 1).getChild();
         return maxChild;
     }
-
 }
