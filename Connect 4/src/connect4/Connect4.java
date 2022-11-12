@@ -34,13 +34,6 @@ public class Connect4 {
 		Red, Yellow;
 	}
 
-	public boolean isTerminal() {
-		for (int i = 0; i < columns; i++)
-			if (indexOfNextChip[i] >= 0)
-				return false;
-		return true;
-	}
-
 	public Connect4 putChip(int column) {
 		int row = indexOfNextChip[column]--;
 		if (row < 0)
@@ -54,22 +47,23 @@ public class Connect4 {
 			controller.setChips();
 		return this;
 	}
-
-	public Turn switchTurn(Turn turn) {
-		return turn == Turn.Red ? Turn.Yellow : Turn.Red;
+	
+	public boolean isTerminal() {
+		for (int i = 0; i < columns; i++)
+			if (indexOfNextChip[i] >= 0)
+				return false;
+		return true;
 	}
 
 	public void setState(Connect4 connect4) {
 		board = connect4.board;
 		turn = connect4.turn;
 		indexOfNextChip = connect4.indexOfNextChip;
+		userScore = connect4.userScore;
+		agentScore = connect4.agentScore;
 
 		if (controller != null)
 			controller.setChips();
-	}
-
-	public void setController(Controller controller) {
-		this.controller = controller;
 	}
 
 	public List<Connect4> getNeighbors() {
@@ -83,6 +77,10 @@ public class Connect4 {
 		}
 		return neighbors;
 	}
+	
+	public void setController(Controller controller) {
+		this.controller = controller;
+	}
 
 	public char[][] getBoard() {
 		return board;
@@ -90,6 +88,10 @@ public class Connect4 {
 
 	public Turn getTurn() {
 		return turn;
+	}
+	
+	public Turn switchTurn(Turn turn) {
+		return turn == Turn.Red ? Turn.Yellow : Turn.Red;
 	}
 
 	public int getUserScore() {

@@ -1,6 +1,7 @@
 package gui;
 
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 
@@ -31,6 +32,9 @@ public class MyPanel extends JPanel {
 			for (int j = 0; j < columns; j++)
 				g.drawImage(chips[i][j], 76 + 92 * j, 35 + 92 * i, 75, 75, null);
 		}
+		g.setFont(new Font("Tahoma", Font.BOLD, 16));
+		g.drawString("User score = " + controller.getUserScore(), 175, 615);
+		g.drawString("Agent score = " + controller.getAgentScore(), 500, 615);
 	}
 
 	public void putChip(int column) {

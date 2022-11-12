@@ -63,4 +63,18 @@ public class Controller {
 	public void setDepth(int depth) {
 		minMax.setDepth(depth);
 	}
+
+	public int getUserScore() {
+		if (connect4 == null)
+			return 0;
+
+		return connect4.getUserScore();
+	}
+
+	public int getAgentScore() {
+		if (connect4 == null)
+			return 0;
+
+		return connect4.getAgentScore();
+	}
 }

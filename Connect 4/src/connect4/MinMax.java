@@ -46,8 +46,8 @@ public class MinMax extends IMinMax {
 	@Override
 	public Connect4 aiDecision(Connect4 s) {
 		Connect4 maxChild = maximize(s, depth).getChild();
-		maxChild.setAgentScore(h.connect4(maxChild.getBoard(), 'R'));
-		maxChild.setUserScore(h.connect4(maxChild.getBoard(), 'Y'));
+		maxChild.setUserScore(h.connect4(maxChild.getBoard(), 'R'));
+		maxChild.setAgentScore(h.connect4(maxChild.getBoard(), 'Y'));
 		return maxChild;
 	}
 }
