@@ -1,15 +1,12 @@
 package connect4;
 
-public class MinMaxPruning implements IMinMax {
+public class MinMaxPruning extends IMinMax {
 	Heuristic h = new Heuristic();
 
 	private Pair maximize(Connect4 s, int deep, int alpha, int beta) {
 		// full board state
-		if(!s.haveSlots()) {
-			//System.out.println("AAAAA");
+		if(s.isTerminal())
 			return new Pair(null, h.connect4(s.getBoard(), 'Y'));
-		}
-
 		// leaf state
 		if (deep == 0)
 			return new Pair(null, h.calcHeuristic(s.getBoard()));
@@ -32,10 +29,9 @@ public class MinMaxPruning implements IMinMax {
 
 	private Pair minimize(Connect4 s, int deep, int alpha, int beta) {
 		// full board state
-		if(!s.haveSlots()) {
-			//System.out.println("AAAAA");
+		if(s.isTerminal())
 			return new Pair(null, h.connect4(s.getBoard(), 'Y'));
-		}
+
 		// leaf state
 		if (deep == 0)
 			return new Pair(null, h.calcHeuristic(s.getBoard()));
@@ -43,7 +39,7 @@ public class MinMaxPruning implements IMinMax {
 		int minUtility = Integer.MAX_VALUE;
 		Connect4 minChild = null;
 		for (Connect4 child : s.getNeighbors()) {
-			Pair p = minimize(child, deep - 1, alpha, beta);
+			Pair p = maximize(child, deep - 1, alpha, beta);
 			if (p.getUtility() < minUtility) {
 				minChild = child;
 				minUtility = p.getUtility();
@@ -58,7 +54,9 @@ public class MinMaxPruning implements IMinMax {
 
 	@Override
 	public Connect4 aiDecision(Connect4 s) {
-		Connect4 maxChild = maximize(s, 3, Integer.MIN_VALUE, Integer.MAX_VALUE).getChild();
+		Connect4 maxChild = maximize(s, depth, Integer.MIN_VALUE, Integer.MAX_VALUE).getChild();
+		maxChild.setAgentScore(h.connect4(maxChild.getBoard(), 'R'));
+		maxChild.setUserScore(h.connect4(maxChild.getBoard(), 'Y'));
 		return maxChild;
 	}
 }

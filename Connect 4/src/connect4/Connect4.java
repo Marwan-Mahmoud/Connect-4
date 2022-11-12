@@ -25,7 +25,6 @@ public class Connect4 {
 		turn = Turn.Red;
 		userScore = 0;
 		agentScore = 0;
-
 		indexOfNextChip = new int[columns];
 		for (int i = 0; i < indexOfNextChip.length; i++)
 			indexOfNextChip[i] = 5;
@@ -35,15 +34,11 @@ public class Connect4 {
 		Red, Yellow;
 	}
 
-	public boolean haveSlots(){
-		boolean haveEmptySlot = false;
-		for(int i = 0; i < 7; i++){
-			if(indexOfNextChip[i] > 0) {
-				haveEmptySlot = true;
-				break;
-			}
-		}
-		return haveEmptySlot;
+	public boolean isTerminal(){
+		for(int i = 0; i < columns; i++)
+			if(indexOfNextChip[i] >= 0)
+				return false;
+		return true;
 	}
 
 	public Connect4 putChip(int column) {
@@ -76,6 +71,10 @@ public class Connect4 {
 		if (controller != null)
 			controller.setChips();
 	}
+
+	public void setUserScore(int s){ userScore = s;}
+
+	public void setAgentScore(int s){ agentScore = s;}
 
 	public List<Connect4> getNeighbors() {
 		List<Connect4> neighbors = new ArrayList<>();
