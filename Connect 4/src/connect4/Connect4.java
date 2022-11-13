@@ -114,6 +114,8 @@ public class Connect4 {
 		return indexOfNextChip;
 	}
 
+
+
 	@Override
 	protected Connect4 clone() {
 		Connect4 connect4 = new Connect4();
