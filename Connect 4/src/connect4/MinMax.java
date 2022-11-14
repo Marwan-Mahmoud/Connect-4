@@ -21,6 +21,7 @@ public class MinMax extends IMinMax {
 		// leaf state
 		if (deep == 0) {
 			int temp = h.calcHeuristic(s.getBoard());
+			if(depth<=4)
 			levels.get(depth - deep).put(s.getBoard(), temp);
 			return new Pair(null, temp);
 		}
@@ -34,6 +35,7 @@ public class MinMax extends IMinMax {
 				maxUtility = p.getUtility();
 			}
 		}
+		if(depth<=4)
 		levels.get(depth - deep).put(s.getBoard(), maxUtility);
 		return new Pair(maxChild, maxUtility);
 	}
@@ -45,6 +47,7 @@ public class MinMax extends IMinMax {
 		// leaf state
 		if (deep == 0) {
 			int temp = h.calcHeuristic(s.getBoard());
+			if(depth<=4)
 			levels.get(depth - deep).put(s.getBoard(), temp);
 			return new Pair(null, temp);
 		}
@@ -59,6 +62,7 @@ public class MinMax extends IMinMax {
 				minUtility = p.getUtility();
 			}
 		}
+		if(depth<=4)
 		levels.get(depth - deep).put(s.getBoard(), minUtility);
 		return new Pair(minChild, minUtility);
 	}
@@ -66,11 +70,12 @@ public class MinMax extends IMinMax {
 	@Override
 	public Connect4 aiDecision(Connect4 s) {
 		levels =  new ArrayList<>();
-		for(int i=0; i<depth + 1; i++){
+		int d = Math.min(depth,4);
+		for(int i=0; i<d + 1; i++){
 			levels.add(new LinkedHashMap<>());
 		}
 
-		Long start = System.currentTimeMillis();
+		long start = System.currentTimeMillis();
 		Connect4 maxChild = maximize(s, depth,levels).getChild();
 		long end = System.currentTimeMillis();
 		System.out.println(numOfPlays++);

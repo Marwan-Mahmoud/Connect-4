@@ -16,8 +16,13 @@ public class MinMaxPruning extends IMinMax {
 		if (s.isTerminal())
 			return new Pair(null, h.connect4(s.getBoard(), 'Y'));
 		// leaf state
-		if (deep == 0)
-			return new Pair(null, h.calcHeuristic(s.getBoard()));
+		if (deep == 0) {
+				int temp = h.calcHeuristic(s.getBoard());
+				if (depth <= 4)
+					levels.get(depth - deep).put(s.getBoard(), temp);
+				return new Pair(null, h.calcHeuristic(s.getBoard()));
+
+		}
 
 		int maxUtility = Integer.MIN_VALUE;
 		Connect4 maxChild = null;
@@ -33,6 +38,7 @@ public class MinMaxPruning extends IMinMax {
 			if (maxUtility > alpha)
 				alpha = maxUtility;
 		}
+		if(depth<=4)
 		levels.get(depth - deep).put(s.getBoard(), maxUtility);
 		return new Pair(maxChild, maxUtility);
 	}
@@ -43,9 +49,13 @@ public class MinMaxPruning extends IMinMax {
 			return new Pair(null, h.connect4(s.getBoard(), 'Y'));
 
 		// leaf state
-		if (deep == 0)
-			return new Pair(null, h.calcHeuristic(s.getBoard()));
+		if (deep == 0) {
 
+			int temp = h.calcHeuristic(s.getBoard());
+				if (depth <= 4)
+					levels.get(depth - deep).put(s.getBoard(), temp);
+			return new Pair(null, h.calcHeuristic(s.getBoard()));
+		}
 		int minUtility = Integer.MAX_VALUE;
 		Connect4 minChild = null;
 		for (Connect4 child : s.getNeighbors()) {
@@ -60,6 +70,7 @@ public class MinMaxPruning extends IMinMax {
 			if (minUtility < beta)
 				beta = minUtility;
 		}
+		if(depth<=4)
 		levels.get(depth - deep).put(s.getBoard(), minUtility);
 		return new Pair(minChild, minUtility);
 	}
@@ -71,7 +82,7 @@ public class MinMaxPruning extends IMinMax {
 			levels.add(new LinkedHashMap<>());
 		}
 
-		Long start = System.currentTimeMillis();
+		long start = System.currentTimeMillis();
 		Connect4 maxChild = maximize(s, depth, Integer.MIN_VALUE, Integer.MAX_VALUE).getChild();
 		long end = System.currentTimeMillis();
 		System.out.println(numOfPlays++);
