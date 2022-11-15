@@ -40,10 +40,16 @@ public class MyPanel extends JPanel {
 		g.drawString("Agent score = " + controller.getAgentScore(), 500, 615);
 	}
 
+	/**
+	 * Put a chip in the specified column.
+	 */
 	public void putChip(int column) {
 		controller.putChip(column);
 	}
 
+	/**
+	 * Set chips then update GUI.
+	 */
 	public void setChips(Image[][] chips) {
 		this.chips = chips;
 		this.repaint();

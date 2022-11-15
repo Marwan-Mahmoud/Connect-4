@@ -24,11 +24,15 @@ public class Controller {
 		minMax = new MinMax();
 	}
 
+	/**
+	 * Put a chip in the specified column.
+	 */
 	public void putChip(int column) {
 		if (connect4.getTurn() == Turn.Red)
 			connect4.putChip(column);
 	}
 
+	// Map 2D board of characters into a 2D chip images
 	public void setChips() {
 		Image[][] chips = new Image[Connect4.rows][Connect4.columns];
 		char[][] board = connect4.getBoard();

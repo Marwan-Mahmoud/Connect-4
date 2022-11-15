@@ -34,6 +34,9 @@ public class Connect4 {
 		Red, Yellow;
 	}
 
+	/**
+	 * Put a chip in the specified column if the column is not full.
+	 */
 	public Connect4 putChip(int column) {
 		int row = indexOfNextChip[column]--;
 		if (row < 0)
@@ -48,6 +51,9 @@ public class Connect4 {
 		return this;
 	}
 
+	/**
+	 * @return true if all columns are full.
+	 */
 	public boolean isTerminal() {
 		for (int i = 0; i < columns; i++)
 			if (indexOfNextChip[i] >= 0)
@@ -66,6 +72,9 @@ public class Connect4 {
 			controller.setChips();
 	}
 
+	/**
+	 * Get all neighbors of the current state.
+	 */
 	public List<Connect4> getNeighbors() {
 		List<Connect4> neighbors = new ArrayList<>();
 		for (int column = 0; column < indexOfNextChip.length; column++) {
@@ -98,16 +107,16 @@ public class Connect4 {
 		return userScore;
 	}
 
-	public void setUserScore(int s) {
-		userScore = s;
+	public void setUserScore(int score) {
+		userScore = score;
 	}
 
 	public int getAgentScore() {
 		return agentScore;
 	}
 
-	public void setAgentScore(int s) {
-		agentScore = s;
+	public void setAgentScore(int score) {
+		agentScore = score;
 	}
 
 	public int[] getColumns() {
