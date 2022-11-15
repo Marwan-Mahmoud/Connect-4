@@ -1,28 +1,25 @@
 package gui;
 
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-
-import connect4.IConnect4;
-import connect4.MockConnect4;
 
 public class MyFrame {
 
 	private JFrame frame;
-	private JPanel panel;
+	private MyPanel panel;
 
-	public MyFrame(IConnect4 connect4) {
+	public MyFrame(Controller controller) {
 		frame = new JFrame("Connect 4");
-		panel = new MyPanel(connect4);
+		panel = new MyPanel(controller);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setResizable(false);
 		frame.add(panel);
 		frame.pack();
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
+		new InitialWindow(controller);
 	}
 
-	public static void main(String[] args) {
-		new MyFrame(new MockConnect4());
+	public MyPanel getPanel() {
+		return panel;
 	}
 }
