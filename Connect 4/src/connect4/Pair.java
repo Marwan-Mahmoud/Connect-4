@@ -2,12 +2,12 @@ package connect4;
 
 public class Pair {
 
-	private int utility;
 	private Connect4 child;
+	private int utility;
 
-	public Pair(Connect4 c, int u) {
-		this.child = c;
-		this.utility = u;
+	public Pair(Connect4 child, int utility) {
+		this.child = child;
+		this.utility = utility;
 	}
 
 	public Connect4 getChild() {

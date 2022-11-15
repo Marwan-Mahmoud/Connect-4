@@ -19,7 +19,8 @@ public class Controller {
 	private MyPanel panel;
 	private IMinMax minMax;
 
-	public Controller() {
+	public Controller(Connect4 connect4) {
+		this.connect4 = connect4;
 		minMax = new MinMax();
 	}
 
@@ -44,10 +45,6 @@ public class Controller {
 			connect4.setState(minMax.aiDecision(connect4));
 	}
 
-	public void setConnect4(Connect4 connect4) {
-		this.connect4 = connect4;
-	}
-
 	public void setPanel(MyPanel panel) {
 		this.panel = panel;
 	}
@@ -65,16 +62,10 @@ public class Controller {
 	}
 
 	public int getUserScore() {
-		if (connect4 == null)
-			return 0;
-
 		return connect4.getUserScore();
 	}
 
 	public int getAgentScore() {
-		if (connect4 == null)
-			return 0;
-
 		return connect4.getAgentScore();
 	}
 }

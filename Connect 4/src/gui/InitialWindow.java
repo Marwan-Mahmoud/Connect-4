@@ -1,4 +1,4 @@
-package connect4;
+package gui;
 
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -11,8 +11,6 @@ import javax.swing.JLabel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-
-import gui.Controller;
 
 public class InitialWindow implements ActionListener {
 	private JFrame frame;
@@ -62,6 +60,7 @@ public class InitialWindow implements ActionListener {
 		label.setHorizontalAlignment(SwingConstants.CENTER);
 		label.setBounds(40, 30, 90, 40);
 		frame.getContentPane().add(label);
+
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);

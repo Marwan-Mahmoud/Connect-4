@@ -47,7 +47,7 @@ public class Connect4 {
 			controller.setChips();
 		return this;
 	}
-	
+
 	public boolean isTerminal() {
 		for (int i = 0; i < columns; i++)
 			if (indexOfNextChip[i] >= 0)
@@ -77,7 +77,7 @@ public class Connect4 {
 		}
 		return neighbors;
 	}
-	
+
 	public void setController(Controller controller) {
 		this.controller = controller;
 	}
@@ -89,7 +89,7 @@ public class Connect4 {
 	public Turn getTurn() {
 		return turn;
 	}
-	
+
 	public Turn switchTurn(Turn turn) {
 		return turn == Turn.Red ? Turn.Yellow : Turn.Red;
 	}
@@ -114,17 +114,13 @@ public class Connect4 {
 		return indexOfNextChip;
 	}
 
-
-
 	@Override
 	protected Connect4 clone() {
 		Connect4 connect4 = new Connect4();
-		char[][] newBoard = new char[rows][columns];
 		for (int i = 0; i < rows; i++) {
 			for (int j = 0; j < columns; j++)
-				newBoard[i][j] = board[i][j];
+				connect4.board[i][j] = board[i][j];
 		}
-		connect4.board = newBoard;
 		connect4.turn = turn;
 		connect4.indexOfNextChip = indexOfNextChip.clone();
 		return connect4;

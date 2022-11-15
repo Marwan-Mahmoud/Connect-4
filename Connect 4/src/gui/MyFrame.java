@@ -2,8 +2,6 @@ package gui;
 
 import javax.swing.JFrame;
 
-import connect4.InitialWindow;
-
 public class MyFrame {
 
 	private JFrame frame;
