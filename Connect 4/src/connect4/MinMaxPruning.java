@@ -8,11 +8,10 @@ public class MinMaxPruning extends IMinMax {
 			return new Pair(null, heuristic.connect4(s.getBoard(), 'Y'));
 		// leaf state
 		if (deep == 0) {
-			int temp = heuristic.calcHeuristic(s.getBoard());
+			int utility = heuristic.calcHeuristic(s.getBoard());
 			if (depth <= 4)
-				levels.get(depth - deep).put(s.getBoard(), temp);
-			return new Pair(null, heuristic.calcHeuristic(s.getBoard()));
-
+				levels.get(depth - deep).put(s.getBoard(), utility);
+			return new Pair(null, utility);
 		}
 
 		int maxUtility = Integer.MIN_VALUE;
@@ -41,10 +40,10 @@ public class MinMaxPruning extends IMinMax {
 
 		// leaf state
 		if (deep == 0) {
-			int temp = heuristic.calcHeuristic(s.getBoard());
+			int utility = heuristic.calcHeuristic(s.getBoard());
 			if (depth <= 4)
-				levels.get(depth - deep).put(s.getBoard(), temp);
-			return new Pair(null, heuristic.calcHeuristic(s.getBoard()));
+				levels.get(depth - deep).put(s.getBoard(), utility);
+			return new Pair(null, utility);
 		}
 		int minUtility = Integer.MAX_VALUE;
 		Connect4 minChild = null;

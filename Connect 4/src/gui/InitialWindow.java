@@ -61,6 +61,7 @@ public class InitialWindow implements ActionListener {
 		label.setBounds(40, 30, 90, 40);
 		frame.getContentPane().add(label);
 
+		frame.getRootPane().setDefaultButton(okButton);
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
